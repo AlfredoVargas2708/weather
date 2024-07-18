@@ -10,10 +10,10 @@ export const localizate = async () => {
     }
 };
 
-const key_weather = 'hMlg0gM6skEGKDDnHgvyCqj7x1NUNUji'
+const key_weather = 'VN9BX7UCZ5HQQJTCJWPMWEFQ3'
 
-export const api = async (lat, lon) => {
-    const url = `https://api.tomorrow.io/v4/weather/forecast?location=${lat},${lon}&apikey=${key_weather}`;
+export const api = async (ciudad, pais) => {
+    const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${ciudad},${pais}?unitGroup=metric&key=${key_weather}`;
     try {
         const response = await fetch(url);
         const data = await response.json();
