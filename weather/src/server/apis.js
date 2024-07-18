@@ -10,10 +10,10 @@ export const localizate = async () => {
     }
 };
 
-const key_weather = 'VN9BX7UCZ5HQQJTCJWPMWEFQ3'
+const key_weather = ''
 
-export const api = async (ciudad, pais) => {
-    const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${ciudad},${pais}?unitGroup=metric&key=${key_weather}`;
+export const api = async () => {
+    const url = ``;
     try {
         const response = await fetch(url);
         const data = await response.json();
