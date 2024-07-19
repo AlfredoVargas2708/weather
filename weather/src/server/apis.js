@@ -10,10 +10,10 @@ export const localizate = async () => {
     }
 };
 
-const key_weather = '75bfd16d30d2499a99f162613241807'
+const key_weather = '9bc1401e353d48f5947297b7c476c64b'
 
-export const apiDatosCurrent = async (lat, lon) => {
-    const url = `http://api.weatherapi.com/v1/current.json?key=${key_weather}&q=${lat},${lon}&aqi=no`;
+export const apiDatosCurrent = async (ciudad) => {
+    const url = `https://api.weatherbit.io/v2.0/current?city=${ciudad}&key=${key_weather}`;
     try {
         const response = await fetch(url);
         const data = await response.json();
@@ -24,10 +24,8 @@ export const apiDatosCurrent = async (lat, lon) => {
     }
 };
 
-const key_images = 'cwztj7orycmdggexfepvavvjpipiwyffl7t1gupi'
-
-export const apiImages = async (lat, lon) => {
-    const url = `https://www.meteosource.com/api/v1/free/point?lat=${lat}&lon=${lon}&sections=current%2Chourly&language=en&units=auto&key=${key_images}`;
+export const apiDatosHisoric = async (ciudad, fecha_inicio, fecha_final) => {
+    const url = `https://api.weatherbit.io/v2.0/history/hourly?city=${ciudad}}&start_date=${fecha_inicio}&end_date=${fecha_final}&key=${key_weather}`;
     try {
         const response = await fetch(url);
         const data = await response.json();

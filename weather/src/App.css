@@ -1,3 +1,7 @@
+p {
+    opacity: 0.8;
+}
+
 aside {
     display: flex;
     flex-direction: column;
@@ -41,8 +45,53 @@ body {
 
 .actual {
     display: flex;
+    justify-content: space-between;
+}
+
+.actual img {
+    height: 20vh;
+    width: 20vh;
+    margin: 0 auto;
 }
 
 .datos {
     margin-left: 1vh;
+}
+
+.horas {
+    background-color: rgb(32, 43, 59);
+    display: grid;
+    width: 60vh;
+    padding: 1vh 1.5vh;
+    border-radius: 2vh;
+}
+
+.horario {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.horas p {
+    font-size: 1.5vh;
+}
+
+.hora {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.hora img {
+    height: 5vh;
+}
+
+.hora span {
+    font-weight: bold;
+    font-size: 2vh;
+}
+
+hr {
+    height: 15vh;
+    color: rgb(11, 19, 30);
+    opacity: 0.3;
 }
