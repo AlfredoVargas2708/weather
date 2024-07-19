@@ -36,8 +36,8 @@ export const apiDatosHistoricHourly = async (ciudad, fecha_inicio, fecha_final) 
     }
 };
 
-export const apiDatosHistoricDaily = async (ciudad, fecha_inicio, fecha_final) => {
-    const url = `https://api.weatherbit.io/v2.0/history/daily?city=${ciudad}}&start_date=${fecha_inicio}&end_date=${fecha_final}&key=${key_weather}`;
+export const apiDatosHistoricDaily = async (ciudad) => {
+    const url = `https://api.weatherbit.io/v2.0/forecast/daily?city=${ciudad}&key=${key_weather}`;
     try {
         const response = await fetch(url);
         const data = await response.json();

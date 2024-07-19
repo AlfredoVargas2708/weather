@@ -7,34 +7,22 @@ import {
 } from "./server/apis.js";
 import "./App.css";
 import { TiWeatherPartlySunny } from "react-icons/ti";
-import { FaList } from "react-icons/fa";
+import { FaList, FaThermometerHalf, FaSun } from "react-icons/fa";
 import { CiMap } from "react-icons/ci";
+import { FiWind } from "react-icons/fi";
+import { IoWater } from "react-icons/io5";
 
 const App = () => {
   const [localization, setLocalization] = useState(null);
   const [weatherActual, setWeatherActual] = useState(null);
   const [weatherHistoricHour, setWeatherHistoricHour] = useState(null);
+  const [weatherHistoricDaily, setWeatherHistoricDaily] = useState(null);
   const [ciudad, setCiudad] = useState("");
   const fecha_actual = new Date();
   fecha_actual.setDate(fecha_actual.getDate() - 1);
   const fecha_final_hora = new Date();
   const fecha_final_dia = new Date();
   fecha_final_dia.setDate(fecha_final_dia.getDate() + 7);
-  function obtenerFechas() {
-    var fechas = [];
-    var hoy = new Date();
-    hoy.setDate(hoy.getDate() - 1);
-
-    for (var i = 0; i < 8; i++) {
-      var fecha = new Date();
-      fecha.setDate(hoy.getDate() + i);
-      fechas.push(fecha);
-    }
-
-    return fechas;
-  }
-
-  let fechas_diarias = obtenerFechas();
 
   useEffect(() => {
     localizate()
@@ -53,12 +41,15 @@ const App = () => {
           fecha_final_hora.toJSON().slice(0, 10)
         )
           .then((data) => setWeatherHistoricHour(data))
+          .catch((err) => console.error(err)),
+        apiDatosHistoricDaily(localization.city)
+          .then((data) => setWeatherHistoricDaily(data))
           .catch((err) => console.error(err)))
       : "";
   }, [localization]);
 
   const monstrar = () => {
-    console.log(fechas_diarias.map((fecha) => fecha.toJSON().slice(0, 10)));
+    console.log(weatherHistoricDaily);
   };
 
   return (
@@ -92,6 +83,30 @@ const App = () => {
         />
         <aside className="dias">
           <p>7-DAY FORECAST</p>
+          {weatherHistoricDaily
+            ? weatherHistoricDaily.data.map((dia, index) =>
+                index < 6 ? (
+                  <div key={dia.datetime} className="dia">
+                    <p>
+                      {Number(dia.datetime.slice(8, 10)) ===
+                      new Date().getDate()
+                        ? "Today"
+                        : dia.datetime.slice(5, 10).replace("-", "/")}
+                    </p>
+                    <img
+                      src={`https://www.weatherbit.io/static/img/icons/${dia.weather.icon}.png`}
+                    />
+                    <span>{dia.weather.description}</span>
+                    <p>
+                      <span>{Math.round(Number(dia.max_temp))}</span>/
+                      {Math.round(Number(dia.min_temp))}
+                    </p>
+                  </div>
+                ) : (
+                  ""
+                )
+              )
+            : ""}
         </aside>
       </header>
       {weatherActual && localization && weatherHistoricHour ? (
@@ -221,23 +236,49 @@ const App = () => {
           <div className="air">
             <p>AIR CONDITIONS</p>
             <div className="datos-air">
-              <div>
-                <p>Real Fell</p>
-                <span>
-                  {Math.round(Number(weatherActual.data[0].app_temp))}°C
-                </span>
-                <p>Chance of rain</p>
-                <span>{Number(weatherActual.data[0].precip)}%</span>
+              <div className="datos-air">
+                <div className="svg-air">
+                  <FaThermometerHalf />
+                </div>
+                <div>
+                  <p>Real Fell</p>
+                  <span>
+                    {Math.round(Number(weatherActual.data[0].app_temp))}°C
+                  </span>
+                </div>
               </div>
-              <div>
-                <p>Wind</p>
-                <span>
-                  {Math.round(Number(weatherActual.data[0].wind_spd))} km/h
-                </span>
-                <p>UV index</p>
-                <span>
-                  {Math.round(Number(weatherActual.data[0].uv))} of 11
-                </span>
+              <div className="datos-air">
+                <div className="svg-air">
+                  <FiWind />
+                </div>
+                <div>
+                  <p>Wind</p>
+                  <span>
+                    {Math.round(Number(weatherActual.data[0].wind_spd))} km/h
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div className="datos-air">
+              <div className="datos-air">
+                <div className="svg-air">
+                  <IoWater />
+                </div>
+                <div>
+                  <p>Chance of rain</p>
+                  <span>{Number(weatherActual.data[0].precip)}%</span>
+                </div>
+              </div>
+              <div className="datos-air">
+                <div className="svg-air">
+                  <FaSun />
+                </div>
+                <div>
+                  <p>UV index</p>
+                  <span>
+                    {Math.round(Number(weatherActual.data[0].uv))} of 11
+                  </span>
+                </div>
               </div>
             </div>
           </div>
