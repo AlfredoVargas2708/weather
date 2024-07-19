@@ -1,14 +1,18 @@
 p {
-    opacity: 0.8;
+    opacity: 0.7;
 }
 
-aside {
+main {
+    width: auto;
+}
+
+.barra {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     float: left;
-    height: 90vh;
-    margin: 0 2vh 0 0;
+    height: 65vh;
+    margin: 0 2vh 0 2vh;
     border-radius: 2vh;
     padding: 2vh;
     background-color: rgb(32, 43, 59);
@@ -17,7 +21,7 @@ aside {
     background-size: contain;
 }
 
-aside button {
+.barra button {
     border: none;
     background-color: rgb(32, 43, 59);
     color: white;
@@ -30,9 +34,12 @@ aside button {
     margin: 0 auto;
 }
 
+.svg p {
+    opacity: 1;
+}
+
 input {
     background-color: rgb(32, 43, 59);
-    width: 50vh;
     padding: 1vh;
     border-radius: 2vh;
     color: white;
@@ -45,23 +52,20 @@ body {
 
 .actual {
     display: flex;
-    justify-content: space-between;
 }
 
 .actual img {
-    height: 20vh;
-    width: 20vh;
+    width: 15vh;
     margin: 0 auto;
 }
 
-.datos {
+.datos-actual {
     margin-left: 1vh;
 }
 
 .horas {
     background-color: rgb(32, 43, 59);
     display: grid;
-    width: 60vh;
     padding: 1vh 1.5vh;
     border-radius: 2vh;
 }
@@ -94,4 +98,29 @@ hr {
     height: 15vh;
     color: rgb(11, 19, 30);
     opacity: 0.3;
+}
+
+.air {
+    background-color: rgb(32, 43, 59);
+    display: grid;
+    margin: 1.5vh;
+    padding: 1vh 1.5vh;
+    border-radius: 2vh;
+}
+
+.datos-air {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dias {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    float: right;
+    height: 65vh;
+    margin: 0 0 0 2vh;
+    border-radius: 2vh;
+    padding: 2vh 3vh;
+    background-color: rgb(32, 43, 59);
 }

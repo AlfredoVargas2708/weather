@@ -24,8 +24,20 @@ export const apiDatosCurrent = async (ciudad) => {
     }
 };
 
-export const apiDatosHisoric = async (ciudad, fecha_inicio, fecha_final) => {
+export const apiDatosHistoricHourly = async (ciudad, fecha_inicio, fecha_final) => {
     const url = `https://api.weatherbit.io/v2.0/history/hourly?city=${ciudad}}&start_date=${fecha_inicio}&end_date=${fecha_final}&key=${key_weather}`;
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error fetching weather data:", error);
+        throw error;
+    }
+};
+
+export const apiDatosHistoricDaily = async (ciudad, fecha_inicio, fecha_final) => {
+    const url = `https://api.weatherbit.io/v2.0/history/daily?city=${ciudad}}&start_date=${fecha_inicio}&end_date=${fecha_final}&key=${key_weather}`;
     try {
         const response = await fetch(url);
         const data = await response.json();
