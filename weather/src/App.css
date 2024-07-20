@@ -1,3 +1,168 @@
+.header {
+    display: inline-flex;
+    flex-direction: row;
+}
+
+.header aside {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100vh;
+    margin: 0 2vh;
+    height: 100vh;
+    border-radius: 2vh;
+    text-overflow: clip;
+    background-color: rgb(32, 43, 59);
+}
+
+.dia {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+}
+
+p {
+    opacity: 0.7;
+}
+
+body {
+    background-color: rgb(11, 19, 30);
+    color: white;
+}
+
+/*
+
+
+.barra {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: 0 2vh;
+    height: 50vh;
+    border-radius: 2vh;
+    background-color: rgb(32, 43, 59);
+    background-image: url('./assets/clouds-449822_640.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.barra button {
+    border: none;
+    background-color: rgb(32, 43, 59);
+    color: white;
+    font-weight: bold;
+}
+
+input {
+    background-color: rgb(32, 43, 59);
+    padding: 1vh;
+    border-radius: 2vh;
+    color: white;
+}
+
+.actual {
+    display: flex;
+    align-items: center;
+}
+
+.actual img {
+    width: 15vh;
+    margin: 0 auto;
+}
+
+.svg {
+    margin: 0 auto;
+}
+
+.svg p {
+    opacity: 1;
+}
+
+.datos-actual {
+    margin-left: 1vh;
+}
+
+.horas {
+    background-color: rgb(32, 43, 59);
+    display: grid;
+    padding: 1vh 1.5vh;
+    border-radius: 2vh;
+    margin: 1vh;
+
+}
+
+.horario {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-overflow: ellipsis;
+}
+
+.horas p {
+    font-size: 1.5vh;
+}
+
+.hora {
+    margin: 0.5vh auto;
+    text-align: center;
+    align-items: center;
+}
+
+.hora img {
+    height: 5vh;
+}
+
+main {
+    width: auto;
+}
+
+body {
+    background-color: rgb(11, 19, 30);
+    color: white;
+}
+
+.barra {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 80vh;
+    margin: 0 2vh 0 2vh;
+    padding: 2vh;
+    border-radius: 2vh;
+    background-color: rgb(32, 43, 59);
+    background-image: url('./assets/clouds-449822_640.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.dias {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 80vh;
+    margin: 0 2vh 0 2vh;
+    padding:background-color: rgb(32, 43, 59);
+        padding: 1vh;
+        border-radius: 2vh;
+        color: white;ems: center;
+}
+
+
+
+input {
+
+}
+
+
+
+
+
+
+
+
+;
+
 p {
     opacity: 0.7;
 }
@@ -43,6 +208,7 @@ input {
     background-color: rgb(32, 43, 59);
     padding: 1vh;
     border-radius: 2vh;
+    width: auto;
     color: white;
 }
 
@@ -78,6 +244,7 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
+    text-overflow: ellipsis;
 }
 
 .horas p {
@@ -144,6 +311,60 @@ hr {
     background-color: rgb(32, 43, 59);
 }
 
+
+
+.dia img {
+    height: 5vh;
+}
+
+.dia span {
+    font-weight: bold;
+}
+
+font-size: 3vh;
+opacity: 0.7;
+margin: 0 3vh 0 0;
+}
+    height: 90%;
+    color: rgb(11, 19, 30);
+    opacity: 0.3;
+}
+
+.air {
+    background-color: rgb(32, 43, 59);
+    display: grid;
+    margin: 1.5vh;
+    padding: 1vh 1.5vh;
+    border-radius: 2vh;
+}
+
+.datos-air {
+    display: flex;
+    justify-content: space-between;
+    text-align: justify;
+    align-items: center;
+}
+
+.svg-air {
+    height: 2vh
+
+.datos-air span {
+    margin: 0 5vh 0 0;
+}
+
+.dias {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    float: right;
+    height: 65vh;
+    width: 25vh;
+    margin: 0 0 0 2vh;
+    border-radius: 2vh;
+    padding: 2vh 3vh;
+    background-color: rgb(32, 43, 59);
+}
+
 .dia {
     display: flex;
     justify-content: space-between;
@@ -157,4 +378,4 @@ hr {
 
 .dia span {
     font-weight: bold;
-}
+} */

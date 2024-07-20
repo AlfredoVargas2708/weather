@@ -54,33 +54,29 @@ const App = () => {
 
   return (
     <>
-      {<button onClick={monstrar}></button>}
-      <header>
-        <aside className="barra">
+      {/*       {<button onClick={monstrar}></button>} */}
+      <div className="header">
+        <aside>
           <button>
-            <div className="svg">
-              <TiWeatherPartlySunny />
-              <p>Weather</p>
-            </div>
+            <TiWeatherPartlySunny />
+            <p>Weather</p>
           </button>
           <button>
-            <div className="svg">
-              <FaList />
-              <p>Cities</p>
-            </div>
+            <FaList />
+            <p>Cities</p>
           </button>
           <button>
-            <div className="svg">
-              <CiMap />
-              <p>Map</p>
-            </div>
+            <CiMap />
+            <p>Map</p>
           </button>
         </aside>
-        <input
-          placeholder="Search for cities"
-          value={ciudad}
-          onChange={(e) => setCiudad(e.target.value)}
-        />
+        <header>
+          <input
+            placeholder="Search for cities"
+            value={ciudad}
+            onChange={(e) => setCiudad(e.target.value)}
+          />
+        </header>
         <aside className="dias">
           <p>7-DAY FORECAST</p>
           {weatherHistoricDaily
@@ -108,176 +104,178 @@ const App = () => {
               )
             : ""}
         </aside>
-      </header>
+      </div>
       {weatherActual && localization && weatherHistoricHour ? (
         <main>
-          <div className="actual">
-            <div className="datos-actual">
-              <h1>{localization.city}</h1>
-              <p>Chance of rain: {Number(weatherActual.data[0].precip)}%</p>
-              <h1>{Math.round(Number(weatherActual.data[0].temp))}°C</h1>
+          <div>
+            <div className="actual">
+              <div className="datos-actual">
+                <h1>{localization.city}</h1>
+                <p>Chance of rain: {Number(weatherActual.data[0].precip)}%</p>
+                <h1>{Math.round(Number(weatherActual.data[0].temp))}°C</h1>
+              </div>
+              <img
+                src={`https://www.weatherbit.io/static/img/icons/${weatherActual.data[0].weather.icon}.png`}
+              />
             </div>
-            <img
-              src={`https://www.weatherbit.io/static/img/icons/${weatherActual.data[0].weather.icon}.png`}
-            />
-          </div>
-          <div className="horas">
-            <p>TODAY&apos;S FORECAST</p>
-            <div className="horario">
-              <div className="hora">
-                <p>6:00 AM</p>
-                {weatherHistoricHour.data.map((hora) =>
-                  Number(hora.timestamp_local.slice(11, 13)) === 6 ? (
-                    <div key={hora.timestamp_local}>
-                      <img
-                        src={`https://www.weatherbit.io/static/img/icons/${hora.weather.icon}.png`}
-                      />
-                      <p>
-                        <span>{Math.round(Number(hora.app_temp))}°C</span>
-                      </p>
-                    </div>
-                  ) : (
-                    ""
-                  )
-                )}
-              </div>
-              <hr />
-              <div className="hora">
-                <p>9:00 AM</p>
-                {weatherHistoricHour.data.map((hora) =>
-                  Number(hora.timestamp_local.slice(11, 13)) === 9 ? (
-                    <div key={hora.timestamp_local}>
-                      <img
-                        src={`https://www.weatherbit.io/static/img/icons/${hora.weather.icon}.png`}
-                      />
-                      <p>
-                        <span>{Math.round(Number(hora.app_temp))}°C</span>
-                      </p>
-                    </div>
-                  ) : (
-                    ""
-                  )
-                )}
-              </div>
-              <hr />
-              <div className="hora">
-                <p>12:00 PM</p>
-                {weatherHistoricHour.data.map((hora) =>
-                  Number(hora.timestamp_local.slice(11, 13)) === 12 ? (
-                    <div key={hora.timestamp_local}>
-                      <img
-                        src={`https://www.weatherbit.io/static/img/icons/${hora.weather.icon}.png`}
-                      />
-                      <p>
-                        <span>{Math.round(Number(hora.app_temp))}°C</span>
-                      </p>
-                    </div>
-                  ) : (
-                    ""
-                  )
-                )}
-              </div>
-              <hr />
-              <div className="hora">
-                <p>3:00 PM</p>
-                {weatherHistoricHour.data.map((hora) =>
-                  Number(hora.timestamp_local.slice(11, 13)) === 15 ? (
-                    <div key={hora.timestamp_local}>
-                      <img
-                        src={`https://www.weatherbit.io/static/img/icons/${hora.weather.icon}.png`}
-                      />
-                      <p>
-                        <span>{Math.round(Number(hora.app_temp))}°C</span>
-                      </p>
-                    </div>
-                  ) : (
-                    ""
-                  )
-                )}
-              </div>
-              <hr />
-              <div className="hora">
-                <p>6:00 PM</p>
-                {weatherHistoricHour.data.map((hora) =>
-                  Number(hora.timestamp_local.slice(11, 13)) === 18 ? (
-                    <div key={hora.timestamp_local}>
-                      <img
-                        src={`https://www.weatherbit.io/static/img/icons/${hora.weather.icon}.png`}
-                      />
-                      <p>
-                        <span>{Math.round(Number(hora.app_temp))}°C</span>
-                      </p>
-                    </div>
-                  ) : (
-                    ""
-                  )
-                )}
-              </div>
-              <hr />
-              <div className="hora">
-                <p>9:00 PM</p>
-                {weatherHistoricHour.data.map((hora) =>
-                  Number(hora.timestamp_local.slice(11, 13)) === 21 ? (
-                    <div key={hora.timestamp_local}>
-                      <img
-                        src={`https://www.weatherbit.io/static/img/icons/${hora.weather.icon}.png`}
-                      />
-                      <p>
-                        <span>{Math.trunc(Number(hora.app_temp))}°C</span>
-                      </p>
-                    </div>
-                  ) : (
-                    ""
-                  )
-                )}
-              </div>
-            </div>
-          </div>
-          <div className="air">
-            <p>AIR CONDITIONS</p>
-            <div className="datos-air">
-              <div className="datos-air">
-                <div className="svg-air">
-                  <FaThermometerHalf />
+            <div className="horas">
+              <p>TODAY&apos;S FORECAST</p>
+              <div className="horario">
+                <div className="hora">
+                  <p>6:00 AM</p>
+                  {weatherHistoricHour.data.map((hora) =>
+                    Number(hora.timestamp_local.slice(11, 13)) === 6 ? (
+                      <div key={hora.timestamp_local}>
+                        <img
+                          src={`https://www.weatherbit.io/static/img/icons/${hora.weather.icon}.png`}
+                        />
+                        <p>
+                          <span>{Math.round(Number(hora.app_temp))}°C</span>
+                        </p>
+                      </div>
+                    ) : (
+                      ""
+                    )
+                  )}
                 </div>
-                <div>
-                  <p>Real Fell</p>
-                  <span>
-                    {Math.round(Number(weatherActual.data[0].app_temp))}°C
-                  </span>
+                <hr />
+                <div className="hora">
+                  <p>9:00 AM</p>
+                  {weatherHistoricHour.data.map((hora) =>
+                    Number(hora.timestamp_local.slice(11, 13)) === 9 ? (
+                      <div key={hora.timestamp_local}>
+                        <img
+                          src={`https://www.weatherbit.io/static/img/icons/${hora.weather.icon}.png`}
+                        />
+                        <p>
+                          <span>{Math.round(Number(hora.app_temp))}°C</span>
+                        </p>
+                      </div>
+                    ) : (
+                      ""
+                    )
+                  )}
                 </div>
-              </div>
-              <div className="datos-air">
-                <div className="svg-air">
-                  <FiWind />
+                <hr />
+                <div className="hora">
+                  <p>12:00 PM</p>
+                  {weatherHistoricHour.data.map((hora) =>
+                    Number(hora.timestamp_local.slice(11, 13)) === 12 ? (
+                      <div key={hora.timestamp_local}>
+                        <img
+                          src={`https://www.weatherbit.io/static/img/icons/${hora.weather.icon}.png`}
+                        />
+                        <p>
+                          <span>{Math.round(Number(hora.app_temp))}°C</span>
+                        </p>
+                      </div>
+                    ) : (
+                      ""
+                    )
+                  )}
                 </div>
-                <div>
-                  <p>Wind</p>
-                  <span>
-                    {Math.round(Number(weatherActual.data[0].wind_spd))} km/h
-                  </span>
+                <hr />
+                <div className="hora">
+                  <p>3:00 PM</p>
+                  {weatherHistoricHour.data.map((hora) =>
+                    Number(hora.timestamp_local.slice(11, 13)) === 15 ? (
+                      <div key={hora.timestamp_local}>
+                        <img
+                          src={`https://www.weatherbit.io/static/img/icons/${hora.weather.icon}.png`}
+                        />
+                        <p>
+                          <span>{Math.round(Number(hora.app_temp))}°C</span>
+                        </p>
+                      </div>
+                    ) : (
+                      ""
+                    )
+                  )}
+                </div>
+                <hr />
+                <div className="hora">
+                  <p>6:00 PM</p>
+                  {weatherHistoricHour.data.map((hora) =>
+                    Number(hora.timestamp_local.slice(11, 13)) === 18 ? (
+                      <div key={hora.timestamp_local}>
+                        <img
+                          src={`https://www.weatherbit.io/static/img/icons/${hora.weather.icon}.png`}
+                        />
+                        <p>
+                          <span>{Math.round(Number(hora.app_temp))}°C</span>
+                        </p>
+                      </div>
+                    ) : (
+                      ""
+                    )
+                  )}
+                </div>
+                <hr />
+                <div className="hora">
+                  <p>9:00 PM</p>
+                  {weatherHistoricHour.data.map((hora) =>
+                    Number(hora.timestamp_local.slice(11, 13)) === 21 ? (
+                      <div key={hora.timestamp_local}>
+                        <img
+                          src={`https://www.weatherbit.io/static/img/icons/${hora.weather.icon}.png`}
+                        />
+                        <p>
+                          <span>{Math.trunc(Number(hora.app_temp))}°C</span>
+                        </p>
+                      </div>
+                    ) : (
+                      ""
+                    )
+                  )}
                 </div>
               </div>
             </div>
-            <div className="datos-air">
+            <div className="air">
+              <p>AIR CONDITIONS</p>
               <div className="datos-air">
-                <div className="svg-air">
-                  <IoWater />
+                <div className="datos-air">
+                  <div className="svg-air">
+                    <FaThermometerHalf />
+                  </div>
+                  <div>
+                    <p>Real Fell</p>
+                    <span>
+                      {Math.round(Number(weatherActual.data[0].app_temp))}°C
+                    </span>
+                  </div>
                 </div>
-                <div>
-                  <p>Chance of rain</p>
-                  <span>{Number(weatherActual.data[0].precip)}%</span>
+                <div className="datos-air">
+                  <div className="svg-air">
+                    <FiWind />
+                  </div>
+                  <div>
+                    <p>Wind</p>
+                    <span>
+                      {Math.round(Number(weatherActual.data[0].wind_spd))} km/h
+                    </span>
+                  </div>
                 </div>
               </div>
               <div className="datos-air">
-                <div className="svg-air">
-                  <FaSun />
+                <div className="datos-air">
+                  <div className="svg-air">
+                    <IoWater />
+                  </div>
+                  <div>
+                    <p>Chance of rain</p>
+                    <span>{Number(weatherActual.data[0].precip)}%</span>
+                  </div>
                 </div>
-                <div>
-                  <p>UV index</p>
-                  <span>
-                    {Math.round(Number(weatherActual.data[0].uv))} of 11
-                  </span>
+                <div className="datos-air">
+                  <div className="svg-air">
+                    <FaSun />
+                  </div>
+                  <div>
+                    <p>UV index</p>
+                    <span>
+                      {Math.round(Number(weatherActual.data[0].uv))} of 11
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
