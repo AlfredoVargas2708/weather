@@ -199,3 +199,45 @@ h2 {
 .stat-prep p {
   margin: 0;
 }
+
+.search {
+  background-color: rgb(18, 18, 61);
+  height: 90vh;
+  width: 30vh;
+  float: left;
+}
+
+.search svg {
+  float: right;
+  color: white;
+  font-size: 5vh;
+}
+
+.city {
+  margin: 5vh auto;
+  text-align: center;
+}
+
+.city input {
+  margin: 0 1vh;
+  padding: 1vh;
+}
+
+.city button {
+  background-color: purple;
+  padding: 1vh;
+}
+
+.select-city {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  margin: 1vh;
+}
+
+.select-city:hover {
+  border: 1px solid white;
+  padding: 0;
+  margin: 1vh;
+  transition-duration: 1s;
+}

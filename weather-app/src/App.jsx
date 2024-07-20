@@ -1,4 +1,5 @@
 import { FaBullseye, FaMapMarkerAlt, FaLocationArrow } from "react-icons/fa";
+import { IoIosClose, IoIosArrowForward } from "react-icons/io";
 import "./App.css";
 import { useEffect, useState } from "react";
 import BtnDegrees from "./components/BtnDegrees";
@@ -6,8 +7,8 @@ import {
   location,
   weatherCelcius,
   weatherCelciusForecast,
-  weatherFahreheit,
-  weatherFahreheitForecast,
+  weatherFahrenheit,
+  weatherFahrenheitForecast,
 } from "./server/apiServer";
 
 const App = () => {
@@ -15,69 +16,124 @@ const App = () => {
   const activar = (e) => {
     setActive(e.target.innerText);
   };
+
   const [localizate, setLocalizate] = useState(null);
   useEffect(() => {
     location()
       .then((data) => setLocalizate(data))
       .catch((err) => console.error(err));
   }, []);
-  const [weatherData, setweatherData] = useState(null);
+
+  const [weatherData, setWeatherData] = useState(null);
   useEffect(() => {
-    localizate
-      ? active === "°C"
-        ? weatherCelcius(localizate.city)
-            .then((data) => setweatherData(data))
-            .catch((err) => console.error(err))
-        : weatherFahreheit(localizate.city)
-            .then((data) => setweatherData(data))
-            .catch((err) => console.error(err))
-      : "";
+    if (localizate) {
+      const fetchWeatherData = async () => {
+        try {
+          const data =
+            active === "°C"
+              ? await weatherCelcius(localizate.city)
+              : await weatherFahrenheit(localizate.city);
+          setWeatherData(data);
+        } catch (err) {
+          console.error(err);
+        }
+      };
+      fetchWeatherData();
+    }
   }, [localizate, active]);
-  const [weatherDataDays, setweatherDataDays] = useState(null);
+
+  const [weatherDataDays, setWeatherDataDays] = useState(null);
   useEffect(() => {
-    localizate
-      ? active === "°C"
-        ? weatherCelciusForecast(localizate.city)
-            .then((data) => setweatherDataDays(data))
-            .catch((err) => console.error(err))
-        : weatherFahreheitForecast(localizate.city)
-            .then((data) => setweatherDataDays(data))
-            .catch((err) => console.error(err))
-      : "";
+    if (localizate) {
+      const fetchWeatherDataDays = async () => {
+        try {
+          const data =
+            active === "°C"
+              ? await weatherCelciusForecast(localizate.city)
+              : await weatherFahrenheitForecast(localizate.city);
+          setWeatherDataDays(data);
+        } catch (err) {
+          console.error(err);
+        }
+      };
+      fetchWeatherDataDays();
+    }
   }, [localizate, active]);
+
+  const [activeSearch, setActiveSearch] = useState(false);
+  const search = () => {
+    setActiveSearch(!activeSearch);
+  };
+
+  const [ciudad, setCiudad] = useState("");
+  const [ciudades, setCiudades] = useState([]);
+  const cambiarCiudad = () => {
+    if (ciudad) {
+      setCiudades((prevCiudades) => [...prevCiudades, ciudad]);
+    }
+    setActiveSearch(false);
+    setCiudad("");
+  };
+
   return (
     <>
       {localizate && weatherData && weatherDataDays ? (
         <main>
-          <aside>
-            <div className="localizate">
-              <button>Search for places</button>
-              <button>
-                <FaBullseye />
-              </button>
-            </div>
-            {weatherData.data.map((hoy) => (
-              <div className="actual" key={hoy.datetime}>
-                <img
-                  src={`https://www.weatherbit.io/static/img/icons/${hoy.weather.icon}.png`}
-                />
-                <p>
-                  {Math.round(Number(hoy.temp))}
-                  <sub>{active}</sub>
-                </p>
-                <div>
-                  <span>{hoy.weather.description}</span>
-                </div>
+          {activeSearch ? (
+            <div className="search">
+              <div>
+                <IoIosClose onClick={search} />
               </div>
-            ))}
-            <div className="fecha">
-              <p>
-                Today <sup>.</sup> {new Date().toUTCString().slice(0, 10)}
-              </p>
-              <FaMapMarkerAlt />
-              <span>{localizate.city}</span>
+              <div className="city">
+                <input
+                  placeholder="search location"
+                  value={ciudad}
+                  onChange={(e) => setCiudad(e.target.value)}
+                />
+                <button onClick={cambiarCiudad}>Search</button>
+              </div>
+              <div className="ciudades">
+                {ciudades.map((ciudad, index) => (
+                  <div className="ciudad" key={index}>
+                    <div className="select-city">
+                      <p>{ciudad}</p>
+                      <IoIosArrowForward />
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-          </aside>
+          ) : (
+            <aside>
+              <div className="localizate">
+                <button onClick={search}>Search for places</button>
+                <button>
+                  <FaBullseye />
+                </button>
+              </div>
+              {weatherData.data.map((hoy) => (
+                <div className="actual" key={hoy.datetime}>
+                  <img
+                    src={`https://www.weatherbit.io/static/img/icons/${hoy.weather.icon}.png`}
+                  />
+                  <p>
+                    {Math.round(Number(hoy.temp))}
+                    <sub>{active}</sub>
+                  </p>
+                  <div>
+                    <span>{hoy.weather.description}</span>
+                  </div>
+                </div>
+              ))}
+              <div className="fecha">
+                <p>
+                  Today <sup>.</sup> {new Date().toUTCString().slice(0, 10)}
+                </p>
+                <FaMapMarkerAlt />
+                <span>{localizate.city}</span>
+              </div>
+            </aside>
+          )}
           <div className="degrees">
             <BtnDegrees active={active} activar={activar} texto="°C" />
             <BtnDegrees active={active} activar={activar} texto="°F" />
@@ -88,7 +144,7 @@ const App = () => {
                 <div hidden key={dias.datetime}></div>
               ) : Number(dias.datetime.slice(8, 10)) ===
                 new Date().getDate() + 1 ? (
-                <div className="dia">
+                <div className="dia" key={dias.datetime}>
                   <p>Tomorrow</p>
                   <img
                     src={`https://www.weatherbit.io/static/img/icons/${dias.weather.icon}.png`}
@@ -105,7 +161,7 @@ const App = () => {
                   </div>
                 </div>
               ) : (
-                <div className="dia">
+                <div className="dia" key={dias.datetime}>
                   <p>{new Date(dias.datetime).toUTCString().slice(0, 10)}</p>
                   <img
                     src={`https://www.weatherbit.io/static/img/icons/${dias.weather.icon}.png`}
@@ -130,7 +186,6 @@ const App = () => {
               <div className="stat">
                 <p>Wind</p>
                 <div className="stat-text">
-                  {" "}
                   <p>
                     {weatherData.data.map((dia) =>
                       Math.round(Number(dia.wind_spd))
@@ -146,7 +201,6 @@ const App = () => {
               <div className="stat">
                 <p>Precipitation</p>
                 <div className="stat-text">
-                  {" "}
                   <p>
                     {weatherData.data.map((dia) =>
                       Math.round(Number(dia.precip))
@@ -175,7 +229,6 @@ const App = () => {
               <div className="stat">
                 <p>Visibility</p>
                 <div className="stat-text">
-                  {" "}
                   <p>
                     {weatherData.data.map((dia) => Math.round(Number(dia.vis)))}
                   </p>
@@ -185,7 +238,6 @@ const App = () => {
               <div className="stat">
                 <p>Air Pressure</p>
                 <div className="stat-text">
-                  {" "}
                   <p>
                     {weatherData.data.map((dia) =>
                       Math.round(Number(dia.pres))

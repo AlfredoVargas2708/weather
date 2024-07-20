@@ -24,7 +24,7 @@ export const weatherCelcius = async (city) => {
     }
 }
 
-export const weatherFahreheit = async (city) => {
+export const weatherFahrenheit = async (city) => {
     const url = `https://api.weatherbit.io/v2.0/current?city=${city}&units=I&key=${api_key}`
     try {
         const response = await fetch(url);
@@ -48,7 +48,7 @@ export const weatherCelciusForecast = async (city) => {
     }
 }
 
-export const weatherFahreheitForecast = async (city) => {
+export const weatherFahrenheitForecast = async (city) => {
     const url = `https://api.weatherbit.io/v2.0/forecast/daily?city=${city}&days=6&units=I&key=${api_key}`
     try {
         const response = await fetch(url);
