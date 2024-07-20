@@ -24,6 +24,27 @@ const App = () => {
       .catch((err) => console.error(err));
   }, []);
 
+  const [activeSearch, setActiveSearch] = useState(false);
+  const search = () => {
+    setActiveSearch(!activeSearch);
+  };
+
+  const [ciudad, setCiudad] = useState("");
+  const [ciudades, setCiudades] = useState([]);
+
+  useEffect(() => {
+    if (localizate) {
+      setCiudades([localizate.city]);
+    }
+  }, [localizate]);
+  const cambiarCiudad = () => {
+    if (ciudad) {
+      setCiudades((prevCiudades) => [...prevCiudades, ciudad]);
+    }
+    setActiveSearch(false);
+    setCiudad("");
+  };
+
   const [weatherData, setWeatherData] = useState(null);
   useEffect(() => {
     if (localizate) {
@@ -60,19 +81,8 @@ const App = () => {
     }
   }, [localizate, active]);
 
-  const [activeSearch, setActiveSearch] = useState(false);
-  const search = () => {
-    setActiveSearch(!activeSearch);
-  };
-
-  const [ciudad, setCiudad] = useState("");
-  const [ciudades, setCiudades] = useState([]);
-  const cambiarCiudad = () => {
-    if (ciudad) {
-      setCiudades((prevCiudades) => [...prevCiudades, ciudad]);
-    }
+  const selectCity = () => {
     setActiveSearch(false);
-    setCiudad("");
   };
 
   return (
@@ -93,9 +103,9 @@ const App = () => {
                 <button onClick={cambiarCiudad}>Search</button>
               </div>
               <div className="ciudades">
-                {ciudades.map((ciudad, index) => (
-                  <div className="ciudad" key={index}>
-                    <div className="select-city">
+                {ciudades.map((ciudad) => (
+                  <div className="ciudad" key={ciudad}>
+                    <div className="select-city" onClick={selectCity}>
                       <p>{ciudad}</p>
                       <IoIosArrowForward />
                     </div>
