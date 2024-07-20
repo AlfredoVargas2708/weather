@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+  font-family: 'Raleway', sans-serif;
+}
+
+aside {
+  background-color: rgb(18, 18, 61);
+  height: 90vh;
+  width: 30vh;
+  float: left;
+}
+
+.localizate {
+  display: flex;
+  justify-content: space-around;
+  margin: 2vh 0;
+}
+
+.localizate button {
+  background-color: gray;
+  color: white;
+  border: none;
+  padding: 0.5vh;
+}
+
+.localizate button:nth-child(even) {
+  border-radius: 3vh;
+  font-size: 2vh;
+}
+
+.localizate button:nth-child(even) svg {
+  margin: 2px 0 0 0;
+  padding: 0 4px;
+}
+
+main {
+  background-color: rgb(22, 22, 22);
+  width: 120vh;
+  height: 90vh;
+}
+
+.degrees {
+  text-align: right;
+  padding: 1vh 4vh;
+}
+
+.degrees button {
+  margin: 1vh;
+  border-radius: 3vh;
+  padding: 1vh;
+  font-size: 1.5vh;
+  background-color: white;
+  border: none;
+}
+
+.degrees .active {
+  background-color: rgb(18, 18, 61);
+  color: white;
+}
+
+p {
+  color: white;
+}
+
+.actual {
+  text-align: center;
+}
+
+.actual img {
+  margin: 5vh 0 0 0;
+  height: 20vh;
+}
+
+.actual p {
+  font-size: 10vh;
+}
+
+.actual sub {
+  opacity: 0.5;
+  font-size: 4vh;
+}
+
+.actual span {
+  opacity: 0.5;
+  color: white;
+  font-size: 3vh;
+  font-weight: bolder;
+}
+
+.fecha {
+  text-align: center;
+}
+
+.fecha p {
+  margin: 7vh 0 3vh 0;
+  opacity: 0.5;
+}
+
+.fecha span {
+  opacity: 0.5;
+  color: white;
+  margin: 0 0 0 1vh;
+}
+
+.fecha svg {
+  color: white;
+  opacity: 0.5
+}
+
+.dias {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.hoy {
+  background-color: white;
+}
+
+.dia {
+  background-color: rgb(18, 18, 61);
+  display: inline-flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 0 1vh;
+}
+
+.dia img {
+  height: 10vh;
+}
+
+.temps {
+  display: inline-flex;
+  justify-content: space-around;
+}
+
+.temps p:nth-child(even) {
+  opacity: 0.5;
+}
+
+h2 {
+  margin: 8vh 35vh 3vh 35vh;
+  color: white;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+}
+
+.stat {
+  background-color: rgb(18, 18, 61);
+  height: 100%;
+  width: 30vh;
+  text-align: center;
+  margin-bottom: 1vh;
+}
+
+.stat-text {
+  display: inline-flex;
+  font-size: xx-large;
+}
+
+.stat-text p {
+  margin-top: 4vh;
+}
+
+.stat-text p:first-child {
+  margin: 0.5vh 1vh 1.5vh 1vh;
+  font-size: 5vh;
+}
+
+.stat svg {
+  color: white;
+  background-color: gray;
+  padding: 0.5vh;
+  border-radius: 1vh;
+  margin: 0 1.5vh 1vh 0;
+}
+
+.dir_wind {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat input {
+  width: 80%;
+  margin: 0;
+}
+
+.stat-prep {
+  display: flex;
+  justify-content: center;
+  justify-content: space-around;
+}
+
+.stat-prep p {
+  margin: 0;
+}
